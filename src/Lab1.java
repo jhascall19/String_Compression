@@ -35,6 +35,37 @@ public class Lab1 {
 
 public String simpleCompression(String orig) {
     String newString = "";
+    int length = orig.length();
+    int counter = 0;
+    char at = orig.charAt(0);
+    System.out.println(length);
+
+    for (int i = 0; i < length ; i++) { //done with some help from Quinn and the Web. This took me about two hours of work!
+        if (i == length-1){
+            counter++;
+            newString += Character.toString(at) + (Integer.toString(counter));
+            counter = 1;
+            at = orig.charAt(i);
+
+    }
+    if (Character.toString(orig.charAt(i)).compareTo(Character.toString(at)) == 0){
+        counter++;
+    }
+    else{
+        newString += (Character.toString(at) + Integer.toString(counter));
+        counter = 1;
+        at = orig.charAt(i);
+        }
+
+
+
+
+
+
+
+
+
+
 //    for (int i = 0; i < orig.length(); i++) {
 //int letterValue = orig.charAt(i);
 //        char letter = orig.charAt(i);
@@ -50,30 +81,30 @@ public String simpleCompression(String orig) {
 //            counter++;
 //        }
 //    }
-    int[] charcount = new int[orig.length()];
-    for (int i = 0; i < orig.length(); i++) {
-        charcount[i] += orig.charAt(i);
-
-
-
-
-        int q = 0;
-        int amt1 = charcount[q];
-        int counter = 2;
-
-            while (charcount[q] == amt1){
-                counter++;
-                if (q >= charcount.length){
-                    amt1 = 123454321;
-                }else {
-                    q++;
-                }
-            }
-            System.out.println(counter);
-
-
-
-    return "hi";
+//    int[] charcount = new int[orig.length()];
+//    for (int i = 0; i < orig.length(); i++) {
+//        charcount[i] += orig.charAt(i);
+//
+//
+//
+//
+//        int q = 0;
+//        int amt1 = charcount[q];
+//        int counter = 2;
+//
+//            while (charcount[q] == amt1){
+//                counter++;
+//                if (q >= charcount.length){
+//                    amt1 = 123454321;
+//                }else {
+//                    q++;
+//                }
+//            }
+//            System.out.println(counter);
+//
+//
+//
+//    return "hi";
     }
 
 
@@ -96,6 +127,7 @@ public String simpleCompression(String orig) {
 }
 
 public String dictionary(String phrase){
+    String newString = "";
     ArrayList<String> wordHolder = new ArrayList<>();
     int sub = 0;
     for (int i = 0; i < phrase.length() ; i++) {
@@ -108,14 +140,16 @@ public String dictionary(String phrase){
 
 
     }
-    int counter = 0;
-    for (int q = 0; q < wordHolder.size() ; q++) {
+
+    for (int q = 0; q < wordHolder.size(); q++) {
 
 
+    newString += q;
+        System.out.println("word: " + wordHolder.get(q) + " Key: " + q);
     }
+    System.out.println("compression rate: " + ((double)(phrase.length() - newString.length() + wordHolder.size())/phrase.length() ));
 
-    System.out.println(wordHolder.size());
-    return "s";
+    return newString;
 }
 
 
@@ -130,8 +164,10 @@ public String dictionary(String phrase){
 
         String compressor = "aaaeeeiiiooouuu";
         System.out.println(baby.simpleCompression(compressor));
+        System.out.println();
+        System.out.println();
 
-        String words = "a eat cat";
+        String words = "aeat cat dog faf sjsh hssh";
         System.out.println(baby.dictionary(words));
     }
 }
